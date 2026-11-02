@@ -1,0 +1,28 @@
+version: 1
+send_anonymous_usage_stats: false
+project_id: tap-sap-s4
+plugins:
+  extractors:
+  - name: tap-sap-s4
+    namespace: tap_sap_s4
+    pip_url: -e .
+    capabilities: [catalog, discover, about]
+    settings:
+    - name: base_url
+      label: SAP HTTPS origin
+    - name: username
+      sensitive: true
+    - name: password
+      sensitive: true
+    - name: sap_client
+      kind: string
+    - name: company_code
+      kind: string
+    - name: verify_ssl
+      kind: boolean
+      value: true
+    - name: page_size
+      kind: integer
+      value: 1000
+    settings_group_validation:
+    - [base_url, username, password]
