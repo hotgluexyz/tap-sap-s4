@@ -1,0 +1,22 @@
+[project]
+name = "tap-sap-s4"
+version = "0.1.0"
+description = "Full-table SAP S/4HANA OData V2 Singer tap built with the Hotglue Singer SDK"
+requires-python = ">=3.10,<3.11"
+dependencies = ["hotglue-singer-sdk==1.0.52", "requests>=2.25.1,<3", "backoff==1.8.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "ruff>=0.15"]
+
+[project.scripts]
+tap-sap-s4 = "tap_sap_s4.tap:TapSapS4.cli"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["tap_sap_s4*"]
+
+[tool.setuptools.package-data]
+tap_sap_s4 = ["metadata/*.xml"]
